@@ -9,7 +9,7 @@ public class Inventory
     public Block[] slots;
     public int numberOfSlots = 9;
     public int emptySlots = 9;
-    public int currentSlotSeleted = 0;
+    public int slotSelectedIndex = 0;
 
     public Inventory()
     {
@@ -48,5 +48,42 @@ public class Inventory
             }
         }
         return false;
+    }
+
+    public void RemoveItem(Block block)
+    {
+        for (int i = 0; i < numberOfSlots; i++)
+        {
+            if (slots[i] == null) continue;
+            if (slots[i].GetName() != block.GetName()) continue;
+            if (slots[i].localizedName != block.localizedName) continue;
+
+            if (slots[i].currentStackAmount > 1) //If more than one item
+            {
+                slots[i].SetCurrentStackAmount(slots[i].currentStackAmount - 1);
+                OnInventoryChanged?.Invoke(this, EventArgs.Empty);
+                return;
+            }
+            else
+            {
+                slots[i] = null;
+                OnInventoryChanged?.Invoke(this, EventArgs.Empty);
+                return;
+            }
+        }
+    }
+
+    public void DropItem(Vector3 position)
+    {
+        if (slots[slotSelectedIndex] == null) return;
+        DropSpawner.Instance.SpawnDrop(position, slots[slotSelectedIndex]);
+        RemoveItem(slots[slotSelectedIndex]);
+
+    }
+
+    public void SelectSlot(int slotIndex)
+    {
+        slotSelectedIndex = slotIndex;
+        OnInventoryChanged?.Invoke(this, EventArgs.Empty);
     }
 }

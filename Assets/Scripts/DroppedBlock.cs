@@ -28,4 +28,10 @@ public class DroppedBlock : MonoBehaviour
     {
         transform.Rotate(Vector3.up, rotationSpeed);
     }
+
+    private void OnCollisionEnter(Collision other) 
+    {
+        if (transform.position.y < other.transform.position.y + 0.5f)
+            transform.position += Vector3.up;
+    }
 }

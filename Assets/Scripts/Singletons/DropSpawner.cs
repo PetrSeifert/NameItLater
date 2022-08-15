@@ -17,7 +17,7 @@ public class DropSpawner : MonoBehaviour
     {
         Transform drop = Instantiate(dropPrefab, position, Quaternion.identity).GetComponent<Transform>();
 
-        drop.GetComponent<DroppedBlock>().SetBlock(block);
+        drop.GetComponent<DroppedBlock>().SetBlock(block.Copy());
     }
 
     public void DestroySelf()

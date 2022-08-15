@@ -5,7 +5,6 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private UI_Inventory uiInventory;
-
     private Inventory inventory;
 
     private void Awake()
@@ -16,12 +15,16 @@ public class Player : MonoBehaviour
     private void Start()
     {
         uiInventory.SetInventory(inventory);
-        inventory.AddItem(WorldGenerator.Instance.blocks[0]);
+
+        for (int i = 0; i < 10; i++)
+            inventory.AddItem(WorldGenerator.Instance.blocks[0].Copy());
     }
 
     public void PlaceBlock(Vector3 position)
     {   
-        Block block = inventory.slots[inventory.currentSlotSeleted];
+        Block block = inventory.slots[inventory.slotSelectedIndex];
+        if (block == null) return;
+        inventory.RemoveItem(block);
         BlockPlacer.Instance.PlaceBlock(position, block);
     }
 
@@ -42,4 +45,15 @@ public class Player : MonoBehaviour
     {
         block.GetComponent<PlacedBlock>().DestroySelf();
     } 
+
+    public void SelectSlot(int slotIndex)
+    {
+        inventory.SelectSlot(slotIndex);
+    }
+
+    public void DropItem()
+    {
+        Vector3 dropPositon = transform.position + transform.forward * 2;
+        inventory.DropItem(dropPositon);
+    }
 }
