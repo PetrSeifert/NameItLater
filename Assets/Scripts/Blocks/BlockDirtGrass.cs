@@ -1,22 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class BlockDirtGrass : Block
 {
-    public BlockDirtGrass() : base("Dirt")
+    public BlockDirtGrass() : base("DirtGrass")
     {
 
     }
 
-    public BlockDirtGrass(BlockDirtGrass block) : base(block.GetName())
+    public BlockDirtGrass(BlockDirtGrass block) : base(block)
     {
-
-    }
-
-    public override Texture2D GetBlockTexture()
-    {
-        return AssetManager.Instance.dirtGrassBlockTexture;
     }
 
     public override Block Copy()

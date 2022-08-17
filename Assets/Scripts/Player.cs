@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
         uiInventory.SetInventory(inventory);
 
         for (int i = 0; i < 10; i++)
-            inventory.AddItem(WorldGenerator.Instance.blocks[0].Copy());
+            inventory.AddItem(AssetManager.Instance.blockList[1].Copy());
     }
 
     public void PlaceBlock(Vector3 position)
@@ -43,7 +43,9 @@ public class Player : MonoBehaviour
 
     public void DestroyBlock(GameObject block)
     {
-        block.GetComponent<PlacedBlock>().DestroySelf();
+        PlacedBlock placedBlock = block.GetComponent<PlacedBlock>();
+        if (placedBlock.GetBlock().durability < 1000)
+            placedBlock.DestroySelf();
     } 
 
     public void SelectSlot(int slotIndex)

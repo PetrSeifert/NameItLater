@@ -9,7 +9,7 @@ public class PlacedBlock : MonoBehaviour
     public void SetBlock(Block block)
     { 
         this.block = block; 
-        transform.GetComponent<MeshRenderer>().material.mainTexture = block.GetBlockTexture();
+        transform.GetComponent<MeshRenderer>().material.mainTexture = block.blockTexture;
     }
 
     public Block GetBlock(){ return block; }

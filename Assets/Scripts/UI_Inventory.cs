@@ -37,7 +37,7 @@ public class UI_Inventory : MonoBehaviour
             Image itemSlotImage = itemSlotRectTransform.GetComponentsInChildren<Image>()[1];
             itemSlotRectTransform.name = $"block {inventory.slots[i].currentStackAmount}";
             itemSlotImage.color = new Color(255, 255, 255, 1);
-            itemSlotImage.sprite = AssetManager.Instance.dirtIconSprite;
+            itemSlotImage.sprite = inventory.slots[i].iconSprite;
             if (inventory.slots[i].currentStackAmount > 1)
             {
                 TMP_Text ammountText = itemSlotImage.GetComponentInChildren<TMP_Text>();

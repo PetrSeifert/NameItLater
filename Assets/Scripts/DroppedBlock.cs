@@ -16,7 +16,7 @@ public class DroppedBlock : MonoBehaviour
     public void SetBlock(Block block)
     { 
         this.block = block; 
-        transform.GetComponent<MeshRenderer>().material.mainTexture = block.GetBlockTexture();
+        transform.GetComponent<MeshRenderer>().material.mainTexture = block.blockTexture;
     }
     
 

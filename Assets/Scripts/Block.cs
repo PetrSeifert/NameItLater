@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Block
@@ -9,6 +7,9 @@ public abstract class Block
     public int maxStackAmount = 64;
     public int currentStackAmount = 1;
     public int dropAmount = 1;
+    public int durability = 3;
+    public Texture2D blockTexture;
+    public Sprite iconSprite;
 
     public Block(string name)
     {
@@ -23,30 +24,12 @@ public abstract class Block
         maxStackAmount = block.maxStackAmount;
         currentStackAmount = 1; 
         dropAmount = block.dropAmount;
+        blockTexture = block.blockTexture;
+        durability = block.durability;
+        iconSprite = block.iconSprite;
     }
 
-    public abstract Texture2D GetBlockTexture();
     public abstract Block Copy();
 
     public string GetName() { return name; }
-
-    public void SetLocalizedName(string name)
-    {
-        localizedName = name;
-    }
-
-    public void SetMaxStackAmount(int amount)
-    {
-        maxStackAmount = amount;
-    }
-
-    public void SetCurrentStackAmount(int amount)
-    {
-        currentStackAmount = amount;
-    }
-
-    public void SetDropAmount(int amount)
-    {
-        dropAmount = amount;
-    }
 }

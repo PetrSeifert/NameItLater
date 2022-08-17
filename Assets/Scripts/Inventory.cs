@@ -60,7 +60,7 @@ public class Inventory
 
             if (slots[i].currentStackAmount > 1) //If more than one item
             {
-                slots[i].SetCurrentStackAmount(slots[i].currentStackAmount - 1);
+                slots[i].currentStackAmount = slots[i].currentStackAmount - 1;
                 OnInventoryChanged?.Invoke(this, EventArgs.Empty);
                 return;
             }
